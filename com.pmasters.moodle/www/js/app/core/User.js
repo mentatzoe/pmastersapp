@@ -1,0 +1,41 @@
+angular.module('pmastersApp', [])
+    .factory('User', ['$http', '$q', '$rootScope', '$state', function($http, $q, $rootScope, $state){
+        var self = this;
+        var name = {
+            first: '',
+            last: ''
+        };
+        var email = '';
+
+        return {
+            login: logUserIn, //For now, will grow slowly
+            setup: setup
+        };
+
+        function logUserIn(u, p){
+            var url = "http://www.pmasters.es/campusvirtualMMCD2012/login/external.php";
+            var formData = {username: u, password: p};
+
+            var ret = $q.defer();
+            $http.post(url, formData).success(function(data){
+                switch(data['code']){
+                    case 0:
+                        ret.resolve(false);
+                        break;
+                    case 1:
+                        //Login successful
+                        ret.resolve(this.setup(user));
+                        break;
+                }
+            });
+
+            function setup(user){
+                this.username = user.username;
+                this.name.first = user.firstname;
+                this.name.last = user.lastname;
+                this.email = user.email;
+            }
+
+            return ret.promise;
+        }
+    }]);
