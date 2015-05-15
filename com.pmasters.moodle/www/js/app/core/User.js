@@ -13,13 +13,14 @@ angular.module('pmastersApp')
         };
 
         function logUserIn(u, p){
-            var url = "http://www.pmasters.es/campusvirtualMMCD2012/login/external.php";
+            var url = "http://www.pmasters.es/campusvirtualMMCD2012/login/external.php?username=" + u + "&password="+ p;
             var formData = {username: u, password: p};
             console.log(formData);
             var ret = $q.defer();
-            $http.post(url, formData).success(function(data){
+            $http.get(url).success(function(data){
                 switch(data['code']){
                     case 0:
+                        console.log("Wrong user or pass");
                         ret.resolve(false);
                         break;
                     case 1:

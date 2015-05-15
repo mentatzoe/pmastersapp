@@ -1,12 +1,10 @@
 var myApp = angular.module('pmastersApp', [
     'ui.router'
 ]);
-console.log("Config1out");
 myApp.config(function($httpProvider){
         delete $httpProvider.defaults.headers.common['X-Requested-With'];
         console.log("Config1");
 });
-console.log("Config2out");
 myApp.config(['$sceDelegateProvider', function($sceDelegateProvider) {
         console.log("Config2");
         $sceDelegateProvider.resourceUrlWhitelist([
