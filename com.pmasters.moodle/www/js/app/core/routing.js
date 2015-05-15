@@ -1,17 +1,16 @@
 var pmastersApp = angular.module('pmastersApp', ['ui.router']);
-console.log("What");
 pmastersApp.config(
     function($stateProvider, $urlRouterProvider){
         $urlRouterProvider.otherwise('/login');
 
         $stateProvider
             .state('login', {
-                url:'/login',
+                url:"/login",
                 templateUrl: 'login.html'
             })
             .state('base', {
                 url:'/home',
-                templateUrl: 'index.html'
+                templateUrl: 'login.html'
             })
             .state('base.calendar',{
                 url: '^/calendar',

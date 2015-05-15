@@ -14,34 +14,35 @@
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript" src="js/app/app.js"></script>
     <script type="text/javascript" src="js/app/core/routing.js"></script>
+    <script type="text/javascript" src="js/app/core/User.js"></script>
+    <script type="text/javascript" src="js/app/core/LoginController.js"></script>
 
 
     <title>Masters Marketing Comercio y Distribución</title>
 </head>
 
 <body>
-
 <!-- Make sure all your bars are the first things in your <body> -->
 <header class="bar bar-nav color2">
     <h1 class="title">Masters Marketing, Comercio y Distribución</h1>
 </header>
 
-<div class="content" ui-view>
+<div class="content" ng-controller="LoginController">
     <div style="padding: 15px">
-    <form action="http://www.pmasters.es/campusvirtualMMCD2012/login/external.php" method="post" id="login">
+    <form>
         <div class="loginform">
             <div class="form-label"><label for="username">Username</label></div>
             <div class="form-input">
-                <input type="text" name="username" id="username" size="15" value="" />
+                <input type="text" ng-model="form.username" id="username" size="15" value="" />
             </div>
             <div class="clearer"><!-- --></div>
             <div class="form-label"><label for="password">Password</label></div>
             <div class="form-input">
-                <input type="password" name="password" id="password" size="15" value="" />
+                <input type="password" ng-model="username" id="password" size="15" value="" />
             </div>
         </div>
         <div class="clearer"><!-- --></div>
-        <input type="submit" id="loginbtn" value="LOGIN" />
+        <input type="submit" id="loginbtn" value="LOGIN" log-user-in="{{form}}" />
         <div class="forgetpass"><a href="">FORGOT</a></div>
     </form>
     </div>
